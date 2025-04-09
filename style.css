@@ -12,6 +12,8 @@ body {
   overflow-x: hidden;
 }
 
+
+/* traits bleu en fond */
 body::before {
   content: '';
   position: fixed;
@@ -96,7 +98,7 @@ a:hover {
   color: #1d6fa5;
 }
 
-.scroll-button {
+.scroll-button { /* bouton pour aller sur les cartes de spécialités */
   display: inline-block;
   margin-top: 20px;
   padding: 12px 24px;
@@ -170,6 +172,8 @@ input[type="submit"]:hover {
   object-fit: contain;
 }
 
+
+/* nav bar ui */
 .navbar {
   background-color: #1e1e1e;
   padding: 10px 40px;
@@ -232,6 +236,8 @@ input[type="submit"]:hover {
   color: #58a0d3;
 }
 
+
+/* specialites partie + card */
 .specialites {
   display: flex;
   flex-wrap: wrap;
@@ -265,6 +271,8 @@ input[type="submit"]:hover {
   padding: 15px;
 }
 
+
+/* ia part*/
 @media (max-width: 900px) {
   .card {
     flex: 1 1 calc(50% - 30px);
@@ -328,28 +336,13 @@ input[type="submit"]:hover {
   }
 }
 
-.equipe-section {
-  text-align: center;
-  margin-top: 40px;
-}
-
 .title-container h2 {
   font-size: 2.5em;
   margin-bottom: 0px;
 }
 
-.equipe {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
 
-#equipe {
-  margin-top: 1000px;
-}
-
+/* filieres card */
 .card {
   background-color: #fff;
   width: 300px;
@@ -389,6 +382,27 @@ input[type="submit"]:hover {
 #filieres {
   margin-top: 500px;
 }
+
+
+/* notre equipe card */
+
+.equipe {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#equipe {
+  margin-top: 1000px;
+}
+
+.equipe-section {
+  text-align: center;
+  margin-top: 40px;
+}
+
 
 .equipecard-container {
   display: flex;
