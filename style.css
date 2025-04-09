@@ -390,7 +390,7 @@ input[type="submit"]:hover {
   margin-top: 500px;
 }
 
-.card-container {
+.equipecard-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -399,7 +399,7 @@ input[type="submit"]:hover {
   max-width: 1200px;
 }
 
-.card {
+.equipecard {
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -409,16 +409,16 @@ input[type="submit"]:hover {
   transition: transform 0.3s ease;
 }
 
-.card:hover {
+.equipecard:hover {
   transform: translateY(-5px);
 }
 
-.card img {
+.equipecard img {
   width: 100%;
   height: auto;
 }
 
-.card-content {
+.equipecard-content {
   padding: 20px;
   text-align: center;
 }
