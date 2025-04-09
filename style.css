@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 /* STYLECSS */
 body {
@@ -285,11 +286,11 @@ input[type="submit"]:hover {
   }
 }
 
-.notre-equipe-section {
+.equipe-section {
   margin: 40px 0;
 }
 
-.notre-equipe .card {
+.equipe .card {
   display: inline-block;
   width: 30%;
   margin: 20px;
@@ -299,29 +300,29 @@ input[type="submit"]:hover {
   text-align: center;
 }
 
-.notre-equipe .card img {
+.equipe .card img {
   width: 100%;
   height: auto;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
 
-.notre-equipe .card-content {
+.equipe .card-content {
   padding: 15px;
 }
 
-.notre-equipe .card-content h4 {
+.equipe .card-content h4 {
   font-size: 1.5em;
   margin-bottom: 10px;
 }
 
-.notre-equipe .card-content p {
+.equipe .card-content p {
   font-size: 1em;
   color: #555;
 }
 
 @media (max-width: 768px) {
-  .notre-equipe .card {
+  .equipe .card {
     width: 100%;
     margin-bottom: 20px;
   }
