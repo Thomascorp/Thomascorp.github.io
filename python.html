@@ -19,20 +19,14 @@
       terminal.textContent = "Chargement de Pyodide...";
       const pyodide = await pyodideReady;
 
-      terminal.textContent = "Chargement du fichier simulation.py...";
       try {
+        terminal.textContent = "Chargement de simulation.py...";
         const response = await fetch("simulation.py");
         const code = await response.text();
 
-        terminal.textContent = "Exécution du code Python...\n";
-        // Capture print output
         let output = "";
-        pyodide.setStdout({
-          batched: (s) => output += s + "\n"
-        });
-        pyodide.setStderr({
-          batched: (s) => output += "[Erreur] " + s + "\n"
-        });
+        pyodide.setStdout({ batched: (s) => output += s + "\n" });
+        pyodide.setStderr({ batched: (s) => output += "[Erreur] " + s + "\n" });
 
         await pyodide.runPythonAsync(code);
         terminal.textContent = output.trim();
@@ -43,4 +37,3 @@
   </script>
 </body>
 </html>
-
