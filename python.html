@@ -1,39 +1,62 @@
+Insérer du code Python dans une page HTML peut se faire de plusieurs manières, selon ce que vous souhaitez accomplir. Voici quelques méthodes courantes :
+
+1. Utiliser Flask pour intégrer Python et HTML
+
+Flask est un micro-framework pour Python qui permet de créer des applications web. Voici un exemple simple :
+
+app.py :
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html', message="Bonjour, monde!")
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+templates/index.html :
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Terminal Python</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <meta charset="UTF-8">
+    <title>Page d'accueil</title>
 </head>
 <body>
-  <h1>Exécuter simulation.py</h1>
-  <button onclick="runPython()">Lancer la simulation</button>
-  <pre id="terminal">Terminal prêt...</pre>
-
-  <script>
-    let pyodideReady = loadPyodide();
-
-    async function runPython() {
-      const terminal = document.getElementById("terminal");
-      terminal.textContent = "Chargement de Pyodide...";
-      const pyodide = await pyodideReady;
-
-      try {
-        terminal.textContent = "Chargement de simulation.py...";
-        const response = await fetch("simulation.py");
-        const code = await response.text();
-
-        let output = "";
-        pyodide.setStdout({ batched: (s) => output += s + "\n" });
-        pyodide.setStderr({ batched: (s) => output += "[Erreur] " + s + "\n" });
-
-        await pyodide.runPythonAsync(code);
-        terminal.textContent = output.trim();
-      } catch (err) {
-        terminal.textContent = "Erreur : " + err;
-      }
-    }
-  </script>
+    <h1>{{ message }}</h1>
 </body>
 </html>
+
+2. Utiliser Jupyter Notebook pour afficher du code Python dans une page HTML
+
+Vous pouvez exporter un notebook Jupyter en HTML, ce qui inclut le code Python et ses sorties.
+
+Créez votre notebook Jupyter.
+Allez dans File > Download as > HTML (.html).
+3. Utiliser Brython pour exécuter du Python directement dans le navigateur
+
+Brython est une implémentation de Python 3 pour le navigateur.
+
+index.html :
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Python avec Brython</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
+</head>
+<body onload="brython()">
+    <script type="text/python">
+        from browser import document
+        document <= "Bonjour, monde!"
+    </script>
+</body>
+</html>
+
+
+Ces méthodes vous permettent d'intégrer et d'exécuter du code Python dans une page HTML de différentes manières, selon vos besoins spécifiques.
