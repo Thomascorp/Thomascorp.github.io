@@ -20,7 +20,6 @@
     // Charger Pyodide au démarrage
     async function loadPyodideOnce() {
       const terminal = document.getElementById('terminal');
-      terminal.textContent = "Chargement de Pyodide...";
       pyodide = await loadPyodide();
       terminal.textContent = "Pyodide chargé !";
     }
