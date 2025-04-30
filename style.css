@@ -183,11 +183,10 @@ input[type="submit"]:hover {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center; /* Alignement vertical centré de tous les éléments */
-  justify-content: space-between; /* Espacement entre le logo et les liens */
+  align-items: center;
   border-radius: 20px;
-  height: 50px;  /* Hauteur de la barre ajustée pour plus d'espace */
-  width: 100%; /* Utiliser toute la largeur disponible */
+  height: 30px;
+  width: 70%;
   max-width: none;
   margin: 0 auto;
 }
