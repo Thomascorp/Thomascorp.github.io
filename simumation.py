@@ -206,3 +206,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+print("Simulation démarrée...")
+for i in range(5):
+    print(f"Étape {i + 1} OK")
+print("Simulation terminée.")
