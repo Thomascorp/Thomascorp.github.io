@@ -4,27 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terminal Python</title>
-  <link rel="stylesheet" href="py.css">
-  <link href="https://pyscript.net/alpha/pyscript.css" rel="stylesheet">
-  <script defer="defer" src="https://pyscript.net/alpha/pyscript.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/pyodide@0.24.0/pyodide.js"></script>
 </head>
 <body>
   <button onclick="runPython()">Lancer la simulation</button>
-  
-  <!-- Terminal CSS -->
   <pre id="terminal">Terminal prêt...</pre>
 
   <script>
     let pyodide;
 
-    // Charger Pyodide au démarrage
     async function loadPyodideOnce() {
       const terminal = document.getElementById('terminal');
+      terminal.textContent = "Chargement de Pyodide...";
       pyodide = await loadPyodide();
       terminal.textContent = "Pyodide chargé !";
     }
 
-    // Fonction pour exécuter le code Python
     async function runPython() {
       if (!pyodide) {
         alert("Pyodide n'est pas encore chargé. Veuillez patienter.");
@@ -35,11 +30,9 @@
       terminal.textContent = "Chargement du fichier simulation.py...";
 
       try {
-        // Charger le fichier simulation.py depuis le repo GitHub
         const response = await fetch("simulation.py");
         const code = await response.text();
 
-        // Capturer la sortie du script Python
         let output = "";
         pyodide.setStdout({
           batched: (s) => output += s + "\n"
@@ -48,17 +41,13 @@
           batched: (s) => output += "[Erreur] " + s + "\n"
         });
 
-        // Exécuter le code Python
         await pyodide.runPythonAsync(code);
-        
-        // Afficher la sortie dans le terminal
         terminal.textContent = output.trim();
       } catch (err) {
         terminal.textContent = "Erreur : " + err;
       }
     }
 
-    // Charger Pyodide au démarrage
     loadPyodideOnce();
   </script>
 </body>
