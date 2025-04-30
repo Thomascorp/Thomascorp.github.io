@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal Python</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+</head>
+<body>
+  <h1>Exécuter simulation.py</h1>
+  <button onclick="runPython()">Lancer la simulation</button>
+  <pre id="terminal">Terminal prêt...</pre>
+
+  <script>
+    let pyodideReady = loadPyodide();
+
+    async function runPython() {
+      const terminal = document.getElementById("terminal");
+      terminal.textContent = "Chargement de Pyodide...";
+      const pyodide = await pyodideReady;
+
+      terminal.textContent = "Chargement du fichier simulation.py...";
+      try {
+        const response = await fetch("simulation.py");
+        const code = await response.text();
+
+        terminal.textContent = "Exécution du code Python...\n";
+        // Capture print output
+        let output = "";
+        pyodide.setStdout({
+          batched: (s) => output += s + "\n"
+        });
+        pyodide.setStderr({
+          batched: (s) => output += "[Erreur] " + s + "\n"
+        });
+
+        await pyodide.runPythonAsync(code);
+        terminal.textContent = output.trim();
+      } catch (err) {
+        terminal.textContent = "Erreur : " + err;
+      }
+    }
+  </script>
+</body>
+</html>
 
