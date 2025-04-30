@@ -429,15 +429,43 @@ input[type="submit"]:hover {
   transform: translateY(-5px);
 }
 
+.equipecard {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equipecard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
 .equipecard img {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
 }
 
 .equipecard-content {
   padding: 20px;
   text-align: center;
+  background-color: #fff;
 }
+
+.equipecard-content h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.equipecard-content p {
+  font-size: 1rem;
+  color: #666;
+}
+
 
 pre#terminal {
   background-color: #000;
