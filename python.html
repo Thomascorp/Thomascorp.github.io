@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terminal Python</title>
   <link rel="stylesheet" href="py.css">
-<link href="https://pyscript.net/alpha/pyscript.css" rel="stylesheet"></link> <script defer="defer" src="https://pyscript.net/alpha/pyscript.js"></script> 
+  <link href="https://pyscript.net/alpha/pyscript.css" rel="stylesheet">
+  <script defer="defer" src="https://pyscript.net/alpha/pyscript.js"></script>
 </head>
 <body>
   <button onclick="runPython()">Lancer la simulation</button>
@@ -14,17 +15,27 @@
   <pre id="terminal">Terminal prêt...</pre>
 
   <script>
-    let pyodideReady = loadPyodide();
+    let pyodide;
 
-    async function runPython() {
+    // Charger Pyodide au démarrage
+    async function loadPyodideOnce() {
       const terminal = document.getElementById('terminal');
       terminal.textContent = "Chargement de Pyodide...";
+      pyodide = await loadPyodide();
+      terminal.textContent = "Pyodide chargé !";
+    }
 
-      const pyodide = await pyodideReady;
-      
+    // Fonction pour exécuter le code Python
+    async function runPython() {
+      if (!pyodide) {
+        alert("Pyodide n'est pas encore chargé. Veuillez patienter.");
+        return;
+      }
+
+      const terminal = document.getElementById('terminal');
+      terminal.textContent = "Chargement du fichier simulation.py...";
+
       try {
-        terminal.textContent = "Chargement du fichier simulation.py...";
-        
         // Charger le fichier simulation.py depuis le repo GitHub
         const response = await fetch("simulation.py");
         const code = await response.text();
@@ -47,6 +58,9 @@
         terminal.textContent = "Erreur : " + err;
       }
     }
+
+    // Charger Pyodide au démarrage
+    loadPyodideOnce();
   </script>
 </body>
 </html>
