@@ -2,53 +2,19 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminal Python</title>
+  <title>Python avec Pyodide</title>
   <script defer src="https://cdn.jsdelivr.net/npm/pyodide@0.24.0/pyodide.js"></script>
 </head>
 <body>
-  <button onclick="runPython()">Lancer la simulation</button>
-  <pre id="terminal">Terminal prêt...</pre>
+  <button onclick="runPython()">Exécuter Python</button>
+  <pre id="output">Résultat ici...</pre>
 
   <script>
-    let pyodide;
-
-    async function loadPyodideOnce() {
-      const terminal = document.getElementById('terminal');
-      terminal.textContent = "Chargement de Pyodide...";
-      pyodide = await loadPyodide();
-      terminal.textContent = "Pyodide chargé !";
-    }
-
     async function runPython() {
-      if (!pyodide) {
-        alert("Pyodide n'est pas encore chargé. Veuillez patienter.");
-        return;
-      }
-
-      const terminal = document.getElementById('terminal');
-      terminal.textContent = "Chargement du fichier simulation.py...";
-
-      try {
-        const response = await fetch("simulation.py");
-        const code = await response.text();
-
-        let output = "";
-        pyodide.setStdout({
-          batched: (s) => output += s + "\n"
-        });
-        pyodide.setStderr({
-          batched: (s) => output += "[Erreur] " + s + "\n"
-        });
-
-        await pyodide.runPythonAsync(code);
-        terminal.textContent = output.trim();
-      } catch (err) {
-        terminal.textContent = "Erreur : " + err;
-      }
+      let pyodide = await loadPyodide();
+      let result = await pyodide.runPythonAsync("print('Hello depuis Python!')");
+      document.getElementById("output").textContent = result;
     }
-
-    loadPyodideOnce();
   </script>
 </body>
 </html>
